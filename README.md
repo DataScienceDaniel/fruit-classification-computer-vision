@@ -17,7 +17,7 @@ It uses **YOLOv8s** for compact, real-time image classification, trained on the 
 ## 🧰 Requirements
 Install dependencies:
 ```bash
-pip install ultralytics opencv-python scikit-learn matplotlib pandas numpy
+pip install ultralytics opencv-python scikit-learn matplotlib pandas numpy ´´´
 
 ## 🍎 Colab
 https://colab.research.google.com/drive/1JV254KhEbcmoKXaLtrxvacwKy2Ll5Wc1?usp=sharing
