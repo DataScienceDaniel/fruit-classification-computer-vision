@@ -161,7 +161,7 @@
     """### Modelo Yolov8s-cls"""
     
     model = YOLO("yolov8s-cls.pt")
-    model.train(data="dataset", epochs=10, imgsz=224, batch=16)
+    model.train(data="dataset", epochs=50, imgsz=224, batch=16)
     
     """### Imagens de validação"""
     
