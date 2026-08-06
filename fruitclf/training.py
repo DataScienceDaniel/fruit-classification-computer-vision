@@ -19,24 +19,23 @@ def train_classifier(dataset_dir: Path, out_dir: Path, cfg: TrainConfig):
 
     model = YOLO(PRETRAINED)
     model.train(
-        data=str(dataset_dir),
+        data=str(dataset_dir.resolve()),
         epochs=cfg.epochs,
         imgsz=cfg.imgsz,
         batch=cfg.batch,
         seed=cfg.seed,
-        project=str(out_dir / "runs"),
+        project=str((out_dir / "runs").resolve()),
         name="train",
         exist_ok=True,
     )
 
-    runs = sorted(glob.glob(str(out_dir / "runs" / "*")), key=os.path.getmtime)
-    if not runs:
-        raise RuntimeError(f"nenhum run encontrado em {out_dir / 'runs'}")
-    run_dir = runs[-1]
-    ckpt = os.path.join(run_dir, "weights", "best.pt")
-    if not os.path.exists(ckpt):
+    # O Ultralytics reancora caminhos relativos no próprio runs/classify,
+    # então o save_dir do trainer é a única fonte confiável.
+    run_dir = Path(model.trainer.save_dir)
+    ckpt = run_dir / "weights" / "best.pt"
+    if not ckpt.exists():
         raise RuntimeError(f"checkpoint nao encontrado: {ckpt}")
-    return ckpt, run_dir
+    return str(ckpt), str(run_dir)
 
 
 def load_checkpoint(ckpt: str):
