@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# artefatos de execução
+outputs/
+dataset_*/
+runs/
+*.pt
+!yolov8s-cls.pt
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.synctex.gz
+
+.vscode/
+.DS_Store

@@ -1,0 +1,22 @@
+[project]
+name = "fruitclf"
+version = "2.0.0"
+description = "Classificação de frutas e vegetais para sistemas de pesagem inteligentes (SBrT 2026)"
+requires-python = ">=3.10"
+dynamic = ["dependencies"]
+
+[project.scripts]
+fruitclf = "fruitclf.cli:main"
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+
+[tool.setuptools.packages.find]
+include = ["fruitclf*"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
